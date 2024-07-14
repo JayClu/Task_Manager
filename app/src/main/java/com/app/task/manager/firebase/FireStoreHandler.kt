@@ -1,6 +1,9 @@
 package com.app.task.manager.firebase
 
+import android.app.Activity
 import android.util.Log
+import android.widget.Toast
+import com.app.task.manager.models.Board
 import com.app.task.manager.models.User
 import com.app.task.manager.utils.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -76,37 +79,36 @@ class FireStoreHandler {
             }
     }*/
 
-    /*fun updateUserProfileData(activity: Activity, userHashMap : HashMap<String, Any>){
+    fun updateUserProfileData(
+        activity: Activity,
+        userHashMap : HashMap<String, Any>,
+        actionSuccess: () -> Unit,
+        actionFailure: () -> Unit
+    ){
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .update(userHashMap)
             .addOnSuccessListener {
                 Toast.makeText(activity,"Profile updated successfully!",Toast.LENGTH_SHORT).show()
-                when(activity){
-                    is MainActivity -> {
-                        activity.tokenUpdateSuccess()
-                    }
+                actionSuccess.invoke()
+                /*is MyProfileActivity ->{
+                    activity.profileUpdateSuccess()
+                }*/
 
-                    is MyProfileActivity ->{
-                        activity.profileUpdateSuccess()
-                    }
-                }
             }.addOnFailureListener {
-                when(activity){
-                    is MainActivity -> {
-                        activity.hideProgressDialog()
-                    }
-
-                    is MyProfileActivity ->{
-                        activity.hideProgressDialog()
-                    }
-                }
+                actionFailure.invoke()
+                /*is MyProfileActivity ->{
+                    activity.hideProgressDialog()
+                }*/
                 Toast.makeText(activity,"Failed updating profile!",Toast.LENGTH_SHORT).show()
 
             }
-    }*/
+    }
 
-    /*fun getBoardsList(activity: MainActivity){
+    fun getBoardsList(
+        actionSuccess: (listData : ArrayList<Board>) -> Unit,
+        actionFailure: () -> Unit
+    ){
         mFireStore.collection(Constants.BOARDS)
             .whereArrayContains(Constants.ASSIGNED_TO, getCurrentUserId())
             .get()
@@ -119,15 +121,13 @@ class FireStoreHandler {
                     board.documentID = i.id
                     boardsList.add(board);
                 }
-                //pass the result to base activity
-                activity.populateBoardsToUI(boardsList)
+                actionSuccess.invoke(boardsList)
             }.addOnFailureListener {
-                activity.hideProgressDialog()
+                actionFailure.invoke()
             }
-    }*/
+    }
 
     fun loadUserData(
-        readBoardsList: Boolean = false,
         actionSuccess: (document: DocumentSnapshot) -> Unit,
         actionFailure: () -> Unit
     ) {
@@ -136,23 +136,9 @@ class FireStoreHandler {
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
-                val loggedInUser = document.toObject(User::class.java)!!
-
                 actionSuccess.invoke(document)
-
-                /*is MainActivity -> {
-                    Log.d("okala", "loadUserData: MainActivity ")
-                    activity.updateNavigationUserDetails(loggedInUser, readBoardsList)
-                }
-                is MyProfileActivity -> {
-                    activity.setUserDataInUI(loggedInUser)
-                }*/
-
             }.addOnFailureListener {
                 actionFailure.invoke()
-                /*is MainActivity -> {
-                        activity.hideProgressDialog()
-                }*/
             }
     }
 

@@ -5,20 +5,15 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
 import android.view.LayoutInflater
-import android.view.View
-import android.view.WindowInsetsController
-import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.viewbinding.ViewBinding
 import com.app.task.manager.R
 import com.app.task.manager.dialog.DialogNoInternet
@@ -30,7 +25,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
 
     protected lateinit var binding: VB
 
-    private lateinit var mProgressDialog : Dialog
+    private lateinit var mProgressDialog: Dialog
 
     companion object {
         const val ACTION_NETWORK_CHANGE = "android.net.conn.CONNECTIVITY_CHANGE"
@@ -85,6 +80,19 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         finish()
     }
 
+    private var isClickBack = false
+    fun doubleBackToExit() {
+        if (isClickBack) {
+            finish()
+            return
+        }
+        isClickBack = true
+        Toast.makeText(this, "Please press back once again to exit", Toast.LENGTH_LONG).show()
+        Handler(Looper.getMainLooper()).postDelayed({
+            isClickBack = false
+        }, 2000)
+    }
+
     open fun isShowDialogInternet(): Boolean {
         return true
     }
@@ -92,23 +100,29 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
     abstract fun inflateViewBinding(layoutInflater: LayoutInflater): VB
 
 
-    fun showProgressDialog(){
+    fun showProgressDialog() {
         mProgressDialog = Dialog(this)
         mProgressDialog.setContentView(R.layout.progress_dialog)
         mProgressDialog.show()
     }
 
-    fun hideProgressDialog(){
+    fun hideProgressDialog() {
         mProgressDialog.dismiss()
     }
 
-    fun getCurrentUserID() : String {
-        return FirebaseAuth.getInstance().currentUser!! .uid
+    fun getCurrentUserID(): String {
+        return FirebaseAuth.getInstance().currentUser!!.uid
     }
 
-    fun showErrorSnackBar(message : String){
-        val snackBar = Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
-        snackBar.view.setBackgroundColor(ContextCompat.getColor(this, R.color.snack_bar_error_color))
+    fun showErrorSnackBar(message: String) {
+        val snackBar =
+            Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+        snackBar.view.setBackgroundColor(
+            ContextCompat.getColor(
+                this,
+                R.color.snack_bar_error_color
+            )
+        )
         snackBar.show()
     }
 
