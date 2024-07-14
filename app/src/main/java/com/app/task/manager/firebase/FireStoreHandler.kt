@@ -1,9 +1,10 @@
 package com.app.task.manager.firebase
 
-import android.app.Activity
 import android.util.Log
-import android.widget.Toast
+import com.app.task.manager.models.User
+import com.app.task.manager.utils.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
@@ -11,15 +12,14 @@ class FireStoreHandler {
 
     private val mFireStore = FirebaseFirestore.getInstance()
 
-    //get user details from sign-up activity and create a new user in firebase
-    /*fun registerUser(activity: SignUpActivity, userInfo : User){
+    fun registerUser(userInfo: User, action: () -> Unit) {
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {
-                activity.userRegisteredSuccess() //show toast to the user
+                action.invoke() //show toast to the user
             }
-    }*/
+    }
 
     /*fun getBoardDetails(activity : TaskListActivity, documentID : String){
         mFireStore.collection(Constants.BOARDS)
@@ -126,43 +126,40 @@ class FireStoreHandler {
             }
     }*/
 
-    /*fun loadUserData(activity: Activity, readBoardsList : Boolean = false){
+    fun loadUserData(
+        readBoardsList: Boolean = false,
+        actionSuccess: (document: DocumentSnapshot) -> Unit,
+        actionFailure: () -> Unit
+    ) {
         Log.d("okala2", "loadUserData: MainActivity ")
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
             .addOnSuccessListener { document ->
                 val loggedInUser = document.toObject(User::class.java)!!
-                when (activity) {
-                    is SignInActivity -> {
-                        activity.signInSuccess(loggedInUser)
-                    }
-                    is MainActivity -> {
-                        Log.d("okala", "loadUserData: MainActivity ")
-                        activity.updateNavigationUserDetails(loggedInUser, readBoardsList)
-                    }
-                    is MyProfileActivity -> {
-                        activity.setUserDataInUI(loggedInUser)
-                    }
+
+                actionSuccess.invoke(document)
+
+                /*is MainActivity -> {
+                    Log.d("okala", "loadUserData: MainActivity ")
+                    activity.updateNavigationUserDetails(loggedInUser, readBoardsList)
                 }
+                is MyProfileActivity -> {
+                    activity.setUserDataInUI(loggedInUser)
+                }*/
 
             }.addOnFailureListener {
-                when(activity) {
-                    is SignInActivity -> {
+                actionFailure.invoke()
+                /*is MainActivity -> {
                         activity.hideProgressDialog()
-                    }
-                    is MainActivity -> {
-                        activity.hideProgressDialog()
-                    }
-
-                }
+                }*/
             }
-    }*/
+    }
 
-    fun getCurrentUserId() : String {
+    fun getCurrentUserId(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        var currentUserID  = ""
-        if(currentUser != null){
+        var currentUserID = ""
+        if (currentUser != null) {
             currentUserID = currentUser.uid
         }
         return currentUserID

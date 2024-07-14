@@ -16,7 +16,7 @@ import com.app.task.manager.ui.main.MainActivity
 import com.app.task.manager.ui.sign.SignInActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.example.cmpt362project.utils.Constants
+import com.app.task.manager.utils.utils.Constants
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 

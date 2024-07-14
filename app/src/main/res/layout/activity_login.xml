@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -14,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="@string/app_name"
+        android:fontFamily="@font/manrope_bold_700"
         android:textColor="@color/colorAccent"
         android:textSize="40sp"
         android:textStyle="bold"/>
@@ -29,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="Let's Get Started"
+        android:fontFamily="@font/manrope_medium_500"
         android:textColor="@color/primary_text_color"
         android:textSize="25sp"
         android:id="@+id/lets_go_tv"/>
@@ -40,6 +40,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
         android:gravity="center"
+        android:fontFamily="@font/manrope_medium_500"
         android:lineSpacingExtra="5dp"
         android:text="Collaborate and Plan Together Across Multiple Devices with Project Manager"
         android:textColor="@color/secondary_text_color"
@@ -58,6 +59,7 @@
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:paddingTop="8dp"
+        android:fontFamily="@font/manrope_medium_500"
         android:paddingBottom="8dp"
         android:text="Sign in"
         android:textColor="@color/white"
@@ -71,6 +73,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="@font/manrope_medium_500"
         android:background="@drawable/white_border_shape_button_rounded"
         android:foreground="?attr/selectableItemBackground"
         android:gravity="center"

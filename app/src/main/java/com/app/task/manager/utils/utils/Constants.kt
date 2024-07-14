@@ -1,11 +1,10 @@
-package com.example.cmpt362project.utils
+package com.app.task.manager.utils.utils
 
 import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import com.example.cmpt362project.R
 
 object Constants{
     const val USERS : String = "users"

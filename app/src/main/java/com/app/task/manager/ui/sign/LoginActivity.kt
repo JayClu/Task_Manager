@@ -1,15 +1,10 @@
 package com.app.task.manager.ui.sign
 
-import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.app.task.manager.R
 import com.app.task.manager.base.BaseActivity
 import com.app.task.manager.databinding.ActivityLoginBinding
+import com.app.task.manager.utils.ex.openActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
@@ -31,7 +26,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun initListener() {
+        binding.signUpBtn.setOnClickListener {
+            openActivity(SignUpActivity::class.java)
+        }
 
+        binding.signInBtn.setOnClickListener {
+            openActivity(SignInActivity::class.java)
+        }
     }
 
     override fun inflateViewBinding(layoutInflater: LayoutInflater): ActivityLoginBinding {
