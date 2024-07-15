@@ -91,6 +91,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>() {
                 false
             }
 
+            password.length < 6 ->  {
+                showErrorSnackBar("Password should be at least 6 characters")
+                return false
+            }
+
             else -> {
                 true
             }
