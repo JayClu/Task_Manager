@@ -24,7 +24,11 @@ class FireStoreHandler {
             }
     }
 
-    /*fun getBoardDetails(activity : TaskListActivity, documentID : String){
+    fun getBoardDetails(
+        documentID : String,
+        actionSuccess: (board:Board) -> Unit,
+        actionFailure: () -> Unit
+    ){
         mFireStore.collection(Constants.BOARDS)
             .document(documentID)
             .get()
@@ -33,12 +37,11 @@ class FireStoreHandler {
                 Log.e("GetBoardList", document.toString())
                 val board = document.toObject(Board::class.java)!!
                 board.documentID = document.id
-                activity.boardDetails(board)
-
+                actionSuccess.invoke(board)
             }.addOnFailureListener {
-                activity.hideProgressDialog()
+                actionFailure.invoke()
             }
-    }*/
+    }
 
     fun createBoard(
         boardInfo : Board,
@@ -55,7 +58,12 @@ class FireStoreHandler {
             }
     }
 
-    /*fun addUpdateTaskList (activity: Activity, board : Board){
+    fun addUpdateTaskList (
+        activity: Activity,
+        board : Board,
+        actionSuccess: () -> Unit,
+        actionFailure: () -> Unit
+    ){
 
         val taskListHashMap = HashMap<String, Any>()
         taskListHashMap[Constants.TASK_LIST] = board.taskList
@@ -66,21 +74,19 @@ class FireStoreHandler {
             .addOnSuccessListener {
                 Log.e(activity.javaClass.simpleName, "TaskList updated successfully.")
 
-                if (activity is TaskListActivity) {
+                actionSuccess.invoke()
+                /*if (activity is CardDetailsActivity) {
                     activity.addUpdateTaskListSuccess()
-                } else if (activity is CardDetailsActivity) {
-                    activity.addUpdateTaskListSuccess()
-                }
+                }*/
             }
             .addOnFailureListener { e ->
-                if (activity is TaskListActivity) {
+                actionFailure.invoke()
+                /*if (activity is TaskListActivity) {
                     activity.hideProgressDialog()
-                } else if (activity is TaskListActivity) {
-                    activity.hideProgressDialog()
-                }
+                }*/
                 Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
             }
-    }*/
+    }
 
     fun updateUserProfileData(
         activity: Activity,
@@ -145,7 +151,12 @@ class FireStoreHandler {
         return currentUserID
     }
 
-    /*fun getAssignedMembersListDetails(activity: Activity, assignedTo : ArrayList<String>){
+    fun getAssignedMembersListDetails(
+        activity: Activity,
+        assignedTo : ArrayList<String>,
+        actionSuccess: (usersList : ArrayList<User>) -> Unit,
+        actionFailure: () -> Unit
+    ){
         mFireStore.collection(Constants.USERS)
             .whereIn(Constants.ID, assignedTo)
             .get()
@@ -160,22 +171,19 @@ class FireStoreHandler {
                     usersList.add(user)
                 }
 
-                if(activity is MembersActivity){
+                actionSuccess.invoke(usersList)
+                /*if(activity is MembersActivity){
                     activity.setUpMembersList(usersList)
-                }else if(activity is TaskListActivity){
-                    activity.boardMembersDetailList(usersList)
-                }
+                }*/
             }
-            .addOnFailureListener {
-                e ->
-                if(activity is MembersActivity){
+            .addOnFailureListener { e ->
+                actionFailure.invoke()
+                /*if(activity is MembersActivity){
                     activity.hideProgressDialog()
-                }else if(activity is TaskListActivity){
-                    activity.hideProgressDialog()
-                }
+                }*/
                 Log.e(activity.javaClass.simpleName, "Error while creating a List of members", e)
             }
-    }*/
+    }
 
     /*fun getMemberDetails(activity: MembersActivity, email : String){
         mFireStore.collection(Constants.USERS)

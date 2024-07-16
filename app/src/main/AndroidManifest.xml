@@ -17,6 +17,12 @@
         android:theme="@style/Theme.Task_Manager"
         tools:targetApi="31">
         <activity
+            android:name=".ui.member.MembersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.card.CardDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.task.TaskListActivity"
             android:exported="false" />
         <activity
