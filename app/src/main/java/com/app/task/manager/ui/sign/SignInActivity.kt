@@ -1,5 +1,6 @@
 package com.app.task.manager.ui.sign
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -67,7 +68,11 @@ class SignInActivity : BaseActivity<ActivitySignInBinding>() {
 
     private fun signInSuccess() {
         hideProgressDialog()
-        openActivity(MainActivity::class.java, true)
+        val intent = Intent(this, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        finish()
     }
 
     private fun validateForm(email: String, password: String): Boolean {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task_Manager</string>
+    <string name="app_name">Task Manager</string>
     <string name="connect">Connect</string>
     <string name="no_internet_connection">No internet connection</string>
     <string name="txt_content_dialog_no_internet">Lost Internet connection. Please check your network and try again Button Connect</string>
