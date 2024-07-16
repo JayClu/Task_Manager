@@ -40,17 +40,20 @@ class FireStoreHandler {
             }
     }*/
 
-    /*fun createBoard(activity: CreateBoardActivity, boardInfo : Board){
+    fun createBoard(
+        boardInfo : Board,
+        actionSuccess: () -> Unit,
+        actionFailure: () -> Unit
+    ){
         mFireStore.collection(Constants.BOARDS)
             .document()
             .set(boardInfo, SetOptions.merge())
             .addOnSuccessListener {
-                Toast.makeText(activity,"Board created successfully", Toast.LENGTH_SHORT).show()
-                activity.boardCreatedSuccessfully() //show toast to the user
+                actionSuccess.invoke()
             }.addOnFailureListener {
-                activity.hideProgressDialog()
+                actionFailure.invoke()
             }
-    }*/
+    }
 
     /*fun addUpdateTaskList (activity: Activity, board : Board){
 
