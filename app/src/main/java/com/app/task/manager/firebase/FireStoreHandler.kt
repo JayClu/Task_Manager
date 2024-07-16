@@ -91,17 +91,9 @@ class FireStoreHandler {
             .addOnSuccessListener {
                 Toast.makeText(activity,"Profile updated successfully!",Toast.LENGTH_SHORT).show()
                 actionSuccess.invoke()
-                /*is MyProfileActivity ->{
-                    activity.profileUpdateSuccess()
-                }*/
-
             }.addOnFailureListener {
                 actionFailure.invoke()
-                /*is MyProfileActivity ->{
-                    activity.hideProgressDialog()
-                }*/
                 Toast.makeText(activity,"Failed updating profile!",Toast.LENGTH_SHORT).show()
-
             }
     }
 
@@ -131,7 +123,6 @@ class FireStoreHandler {
         actionSuccess: (document: DocumentSnapshot) -> Unit,
         actionFailure: () -> Unit
     ) {
-        Log.d("okala2", "loadUserData: MainActivity ")
         mFireStore.collection(Constants.USERS)
             .document(getCurrentUserId())
             .get()
