@@ -73,17 +73,10 @@ class FireStoreHandler {
             .update(taskListHashMap)
             .addOnSuccessListener {
                 Log.e(activity.javaClass.simpleName, "TaskList updated successfully.")
-
                 actionSuccess.invoke()
-                /*if (activity is CardDetailsActivity) {
-                    activity.addUpdateTaskListSuccess()
-                }*/
             }
             .addOnFailureListener { e ->
                 actionFailure.invoke()
-                /*if (activity is TaskListActivity) {
-                    activity.hideProgressDialog()
-                }*/
                 Log.e(activity.javaClass.simpleName, "Error while creating a board.", e)
             }
     }
