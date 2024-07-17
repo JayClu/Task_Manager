@@ -52,6 +52,12 @@ open class BoardItemAdapter (private val context: Context, private var list : Ar
                 onClickListener!!.onClick(position,model)
             }
         }
+
+        holder.imgDelete.setOnClickListener {
+            if(onClickListener != null){
+                onClickListener!!.onDelete(position,model)
+            }
+        }
     }
 
     fun setOnClickListener(onClickListener : OnClickListener){
@@ -61,11 +67,14 @@ open class BoardItemAdapter (private val context: Context, private var list : Ar
 
     interface OnClickListener{
         fun onClick(position : Int, model : Board)
+
+        fun onDelete(position : Int, model : Board)
     }
 
     class ViewHolder(view : View): RecyclerView.ViewHolder(view){
         val itemAll: LinearLayout = itemView.findViewById(R.id.itemAll)
         val item_board_iv: ImageView = itemView.findViewById(R.id.item_board_iv)
+        val imgDelete: ImageView = itemView.findViewById(R.id.imgDelete)
         val item_board_name_tv: TextView = itemView.findViewById(R.id.item_board_name_tv)
         val item_board_created_by_tv: TextView = itemView.findViewById(R.id.item_board_created_by_tv)
     }

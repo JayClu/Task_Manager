@@ -58,6 +58,21 @@ class FireStoreHandler {
             }
     }
 
+    fun deleteBoard(
+        boardInfo: Board,
+        actionSuccess: () -> Unit,
+        actionFailure: () -> Unit
+    ) {
+        mFireStore.collection(Constants.BOARDS)
+            .document(boardInfo.documentID)
+            .delete()
+            .addOnSuccessListener {
+                actionSuccess.invoke()
+            }.addOnFailureListener {
+                actionFailure.invoke()
+            }
+    }
+
     fun addUpdateTaskList(
         activity: Activity,
         board: Board,

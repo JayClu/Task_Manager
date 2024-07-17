@@ -112,6 +112,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(), NavigationView.OnNavig
                     intent.putExtra(Constants.DOCUMENT_ID, model.documentID)
                     startActivity(intent)
                 }
+
+                override fun onDelete(position: Int, model: Board) {
+                    showProgressDialog()
+                    FireStoreHandler().deleteBoard(model, actionSuccess = {
+                        getBoardsListHandler()
+                    }, actionFailure = {
+                        hideProgressDialog()
+                    })
+                }
             })
         } else {
             binding.appBarOfMain.llMainContent.boardsListRv.visibility = View.GONE
