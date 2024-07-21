@@ -1,4 +1,4 @@
-package com.app.task.manager
+package com.example.testcomposeapp
 
 import org.junit.Test
 
