@@ -5,29 +5,43 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.app.task.manager.R
+import com.app.task.manager.ui.theme.Color1
+import com.app.task.manager.ui.theme.Color2
+import com.app.task.manager.ui.theme.Color3
+import com.app.task.manager.ui.theme.Color4
 import com.app.task.manager.ui.theme.TaskManagerAppTheme
 
 class LoginActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -37,7 +51,7 @@ class LoginActivity : ComponentActivity() {
         }
     }
 
-
+    @Preview(showBackground = true)
     @Composable
     fun MainScreen() {
 
@@ -67,9 +81,7 @@ class LoginActivity : ComponentActivity() {
                     fontSize = 40.sp,
                     color = Color(0xFF0C90F1),
                     modifier = Modifier.padding(top = 40.dp),
-                    //style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold)
                 )
-
 
                 Image(
                     painter = painterResource(id = R.drawable.ic_task_image),
@@ -80,7 +92,6 @@ class LoginActivity : ComponentActivity() {
                     contentScale = ContentScale.Fit
                 )
 
-
                 Text(
                     text = "Let's Get Started",
                     fontFamily = FontFamily.Serif,
@@ -89,7 +100,6 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.padding(top = 25.dp)
                 )
 
-                // Description
                 Text(
                     text = "Collaborate and Plan Together Across Multiple Devices with Project Manager",
                     fontFamily = FontFamily.Serif,
@@ -98,48 +108,66 @@ class LoginActivity : ComponentActivity() {
                     lineHeight = 24.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier
-                        .padding(top = 15.dp)
+                        .padding(top = 15.dp, bottom = 40.dp)
                         .fillMaxWidth()
                 )
 
-                Button(
-                    onClick = {
-                        startActivity(
-                            Intent(this@LoginActivity, SignInActivity::class.java)
-                        )
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 40.dp),
-                    //colors = ButtonDefaults.buttonColors(backgroundColor = Color(0xFF00ACC1)), // Replace with @drawable/shape_button_rounded if using a drawable resource
-                    contentPadding = PaddingValues(vertical = 8.dp)
+                Box(
+                    modifier = with (Modifier){
+                        padding(bottom = 15.dp)
+                        fillMaxWidth()
+                            .background(
+                                Brush.verticalGradient(
+                                    colors = listOf(
+                                        Color1,
+                                        Color2
+                                    )
+                                ),
+                                shape = RoundedCornerShape(10.dp)
+                            )
+                            .clickable {
+                                startActivity(
+                                    Intent(this@LoginActivity, SignInActivity::class.java)
+                                )
+                            }
+                    }
                 ) {
                     Text(
                         text = "Sign in",
-                        fontFamily = FontFamily.Serif, // Replace with your fontFamily
+                        fontFamily = FontFamily.Serif,
                         fontSize = 18.sp,
-                        color = Color.White
+                        color = Color.White,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(top = 12.dp, bottom = 12.dp)
                     )
                 }
 
-                // Sign Up Button
-                Button(
-                    onClick = {
-                        startActivity(
-                            Intent(this@LoginActivity, SignUpActivity::class.java)
-                        )
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 15.dp),
-                    //colors = ButtonDefaults.buttonColors(backgroundColor = Color.White), // Replace with @drawable/white_border_shape_button_rounded if using a drawable resource
-                    contentPadding = PaddingValues(vertical = 8.dp)
+                Spacer(modifier = Modifier.height(15.dp))
+
+                Box(
+                    modifier = with (Modifier){
+                        fillMaxWidth()
+                            .background(
+                                color = Color.White,
+                                shape = RoundedCornerShape(4.dp)
+                            )
+                            .clickable {
+                                startActivity(
+                                    Intent(this@LoginActivity, SignUpActivity::class.java)
+                                )
+                            }
+                            .border(1.dp, Color4, RoundedCornerShape(10.dp))
+                    }
                 ) {
                     Text(
                         text = "Sign up",
-                        fontFamily = FontFamily.Serif, // Replace with your fontFamily
+                        fontFamily = FontFamily.Serif,
                         fontSize = 18.sp,
-                        color = Color(0xFF00ACC1) // Replace with @color/colorAccent
+                        color = Color3,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(top = 12.dp, bottom = 12.dp)
                     )
                 }
             }

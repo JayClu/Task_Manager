@@ -1,6 +1,7 @@
 package com.app.task.manager.firebase
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.app.task.manager.models.Board
@@ -23,6 +24,10 @@ class FireStoreHandler {
             .addOnSuccessListener {
                 action.invoke() //show toast to the user
             }
+    }
+
+    fun register(context: Context, action: () -> Unit) {
+        action.invoke()
     }
 
     fun getBoardDetails(
