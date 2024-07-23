@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "App_AR_Demo"
+rootProject.name = "Task_Manager"
 include(":app")

@@ -55,7 +55,9 @@
             android:id="@+id/imgDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_delete"/>
+            android:padding="6dp"
+            android:background="@drawable/bg_ic_delete"
+            android:src="@drawable/baseline_delete_24"/>
 
     </LinearLayout>
 

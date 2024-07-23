@@ -89,6 +89,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/task_list_title_view_bg_color"
                 android:elevation="10dp"
+                android:paddingVertical="4dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="visible"
@@ -111,17 +112,20 @@
                     android:id="@+id/edit_list_name_ib"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:padding="10dp"
-                    android:src="@drawable/ic_edit" />
+                    android:background="@drawable/bg_ic_delete"
+                    android:src="@drawable/baseline_edit_24"
+                    app:tint="#0C90F1" />
 
                 <ImageButton
                     android:id="@+id/delete_list_ib"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
                     android:padding="10dp"
-                    android:src="@drawable/ic_delete" />
+                    android:layout_marginHorizontal="6dp"
+                    android:background="@drawable/bg_ic_delete"
+                    android:src="@drawable/baseline_delete_24" />
+
             </LinearLayout>
 
             <View
