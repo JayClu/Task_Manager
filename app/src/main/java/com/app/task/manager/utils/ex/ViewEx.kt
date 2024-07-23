@@ -28,7 +28,6 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
-import com.google.android.material.tabs.TabLayout
 
 var isAvailableClick = true
 fun handleAvailableClick(time: Long) {
@@ -112,10 +111,6 @@ fun View.setMargins(left: Int, top: Int, right: Int, bottom: Int) {
         p.setMargins(left, top, right, bottom)
         requestLayout()
     }
-}
-
-fun TabLayout.createTab(tabName: String): TabLayout.Tab {
-    return newTab().setText(tabName)
 }
 
 val Int.toDp: Int

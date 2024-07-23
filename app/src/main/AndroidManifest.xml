@@ -10,24 +10,53 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TestComposeApp"
+        android:theme="@style/Theme.Task_Manager"
         tools:targetApi="31">
 
         <activity
+            android:name=".ui.task.TaskListActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
+
+        <activity
+            android:name=".ui.profile.MyProfileActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
+
+        <activity
+            android:name=".ui.card.CardDetailsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
+
+        <activity
+            android:name=".ui.member.MembersActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
+
+        <activity
+            android:name=".ui.board.CreateBoardActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
+
+        <activity
             android:name=".ui.sign.SignUpActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
 
         <activity
             android:name=".ui.sign.SignInActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
 
         <activity
             android:name=".ui.sign.LoginActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
 
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true"/>
+            android:exported="true"
+            android:theme="@style/Theme.Task_Manager"/>
 
         <activity
             android:name=".ui.splash.SplashActivity"
