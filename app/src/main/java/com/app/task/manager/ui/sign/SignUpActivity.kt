@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -30,8 +31,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -107,8 +111,9 @@ class SignUpActivity : BaseActivity() {
 
                     Text(
                         text = "Enter your name, email and password to register with us.",
+                        fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Bold, FontStyle.Normal)),
                         style = TextStyle(
-                            color = Color(0xFF888888), // Replace with your color resource
+                            color = Color(0xFF7A8089), // Replace with your color resource
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         ),
@@ -139,6 +144,12 @@ class SignUpActivity : BaseActivity() {
                                 onValueChange = {
                                     name = it
                                 },
+                                textStyle = TextStyle(
+                                    color = Color(0xFF000000), // Replace with your color resource
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Normal, FontStyle.Normal)),
+                                    fontWeight = FontWeight.Normal
+                                ),
                                 label = { Text("Name") }
                             )
 
@@ -150,6 +161,12 @@ class SignUpActivity : BaseActivity() {
                                 onValueChange = {
                                     email = it
                                 },
+                                textStyle = TextStyle(
+                                    color = Color(0xFF000000), // Replace with your color resource
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Normal, FontStyle.Normal)),
+                                    fontWeight = FontWeight.Normal
+                                ),
                                 label = { Text("Email") }
                             )
 
@@ -161,6 +178,13 @@ class SignUpActivity : BaseActivity() {
                                 onValueChange = {
                                     password = it
                                 },
+                                visualTransformation = PasswordVisualTransformation(),
+                                textStyle = TextStyle(
+                                    color = Color(0xFF000000), // Replace with your color resource
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Normal, FontStyle.Normal)),
+                                    fontWeight = FontWeight.Normal
+                                ),
                                 label = { Text("Password") }
                             )
 
@@ -241,9 +265,9 @@ class SignUpActivity : BaseActivity() {
                             ) {
                                 Text(
                                     text = "SIGN IN",
-                                    fontFamily = FontFamily.Serif,
                                     fontSize = 18.sp,
                                     color = Color.White,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Bold, FontStyle.Normal)),
                                     modifier = Modifier
                                         .align(Alignment.Center)
                                         .padding(top = 12.dp, bottom = 12.dp)

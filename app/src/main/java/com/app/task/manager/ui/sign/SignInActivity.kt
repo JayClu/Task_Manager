@@ -31,8 +31,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -103,8 +106,9 @@ class SignInActivity : BaseActivity() {
 
                     Text(
                         text = "Enter your email and password to sign in.",
+                        fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Bold, FontStyle.Normal)),
                         style = TextStyle(
-                            color = Color(0xFF888888), // Replace with your color resource
+                            color = Color(0xFF7A8089), // Replace with your color resource
                             fontSize = 16.sp,
                             fontWeight = FontWeight.Bold
                         ),
@@ -135,6 +139,12 @@ class SignInActivity : BaseActivity() {
                                 onValueChange = {
                                     email = it
                                 },
+                                textStyle = TextStyle(
+                                    color = Color(0xFF000000), // Replace with your color resource
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Normal, FontStyle.Normal)),
+                                    fontWeight = FontWeight.Normal
+                                ),
                                 label = { Text("Email") }
                             )
 
@@ -146,6 +156,13 @@ class SignInActivity : BaseActivity() {
                                 onValueChange = {
                                     password = it
                                 },
+                                visualTransformation = PasswordVisualTransformation(),
+                                textStyle = TextStyle(
+                                    color = Color(0xFF000000), // Replace with your color resource
+                                    fontSize = 16.sp,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Normal, FontStyle.Normal)),
+                                    fontWeight = FontWeight.Normal
+                                ),
                                 label = { Text("Password") }
                             )
 
@@ -210,7 +227,7 @@ class SignInActivity : BaseActivity() {
                             ) {
                                 Text(
                                     text = "SIGN IN",
-                                    fontFamily = FontFamily.Serif,
+                                    fontFamily = FontFamily(Font(R.font.poppins_regular_400, FontWeight.Bold, FontStyle.Normal)),
                                     fontSize = 18.sp,
                                     color = Color.White,
                                     modifier = Modifier
