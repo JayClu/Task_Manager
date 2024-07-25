@@ -28,7 +28,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -77,7 +80,7 @@ class LoginActivity : ComponentActivity() {
 
                 Text(
                     text = "Task Manager",
-                    fontFamily = FontFamily.Serif,
+                    fontFamily = FontFamily(Font(R.font.manrope_bold_700, FontWeight.Bold, FontStyle.Normal)),
                     fontSize = 40.sp,
                     color = Color(0xFF0C90F1),
                     modifier = Modifier.padding(top = 40.dp),
@@ -94,7 +97,7 @@ class LoginActivity : ComponentActivity() {
 
                 Text(
                     text = "Let's Get Started",
-                    fontFamily = FontFamily.Serif,
+                    fontFamily = FontFamily(Font(R.font.manrope_medium_500, FontWeight.Medium, FontStyle.Normal)),
                     fontSize = 25.sp,
                     color = Color(0xFF212121),
                     modifier = Modifier.padding(top = 25.dp)
@@ -102,7 +105,7 @@ class LoginActivity : ComponentActivity() {
 
                 Text(
                     text = "Collaborate and Plan Together Across Multiple Devices with Project Manager",
-                    fontFamily = FontFamily.Serif,
+                    fontFamily = FontFamily(Font(R.font.manrope_medium_500, FontWeight.Medium, FontStyle.Normal)),
                     fontSize = 16.sp,
                     color = Color(0xFF757575),
                     lineHeight = 24.sp,
@@ -134,7 +137,7 @@ class LoginActivity : ComponentActivity() {
                 ) {
                     Text(
                         text = "Sign in",
-                        fontFamily = FontFamily.Serif,
+                        fontFamily = FontFamily(Font(R.font.manrope_medium_500, FontWeight.Medium, FontStyle.Normal)),
                         fontSize = 18.sp,
                         color = Color.White,
                         modifier = Modifier
@@ -162,7 +165,7 @@ class LoginActivity : ComponentActivity() {
                 ) {
                     Text(
                         text = "Sign up",
-                        fontFamily = FontFamily.Serif,
+                        fontFamily = FontFamily(Font(R.font.manrope_medium_500, FontWeight.Medium, FontStyle.Normal)),
                         fontSize = 18.sp,
                         color = Color3,
                         modifier = Modifier
